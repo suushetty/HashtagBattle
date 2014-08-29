@@ -1,0 +1,32 @@
+block battleContent
+    .container3
+      form#hashtag(action='', style='padding-top:10px')
+        .col-lg-3
+          input(type='text', placeholder='Enter Hashtag', autofocus class='form-control')
+        .col-lg-3  
+          input(type='submit', id='hashtagSubmit', class='btn btn-primary', value='Add hashtag')
+      .col-lg-2    
+        button(type='button', id='startBattle', disabled='true', class='btn btn-primary ') Start the battle
+      .col-lg-2 
+        button(type='button', id='stopBattle', disabled='true', class='btn btn-primary') Stop the battle 
+    <br/>
+    <br/>
+    #hashtagList(class='hashtags')
+      h4
+        | The #tags which will fight it out in the battlefield
+    br
+    .resultContainer(style='background-color: rgb(255, 252, 252); display:none')
+      #leader(style='font-size: large;color: rgb(155, 0, 0);padding-top: 10px;')
+      .insights(style=' padding-bottom:20px; display:none')
+        ul.nav.nav-pills.pull-left(style="font-size: medium") 
+          li.active
+            a(href='#', id='hashtagCountMetric') Hashtag Count
+          li
+            a(href='#', id='brandReachMetric') Brand Reach
+          li
+            a(href='#', id='retweets') Retweets
+          li
+            a(href='#', id='viralityFactor') Virality Factor
+      <hr>       
+      #metricDescription(style="font-size: medium; padding-bottom:30px") 
+      svg.chart         

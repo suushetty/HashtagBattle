@@ -1,0 +1,76 @@
+body {
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+    color: #00B7FF;
+}
+
+.title {
+    width: 100%;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bolder;
+    padding-top: 20px;
+    background-color: rgb(238, 122, 141);
+    border-color: rgb(14, 36, 14);
+    border-radius: 6px;
+    padding-bottom: 20px;
+}
+
+.bar {
+    fill: steelblue;
+}
+
+.bar:hover {
+    fill: brown;
+}
+
+
+.chart rect {
+    fill: rgb(180, 70, 70);
+}
+
+.chart text {
+    font-size: 20px;
+    font-family: cursive;
+}
+
+
+.axis {
+    font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+    stroke-width: 2;
+}
+
+.hashtags {
+    font-weight: bold;
+    font-family: cursive;
+    font-size: large;  
+}
+
+.domain { 
+    fill: none; 
+    stroke: black; 
+    stroke-width: 2; 
+    shape-rendering:cripsEdges;
+} 
+
+.battleInsights {
+    color: rgb(23, 101, 153);
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+}
+
+.insights>li.active>a:hover, .insights>li.active>a:focus, .insights>li>a:focus {
+    cursor:pointer;
+}
