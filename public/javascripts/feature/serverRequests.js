@@ -1,5 +1,5 @@
 // Starts a battle by passing the input hashtags that needs to be tracked
-function startBattle() {
+function startBattle(hashtagInputs) {
     $('#startBattle').click(function (event) {
         $('#hashtagList').remove();
         event.preventDefault();

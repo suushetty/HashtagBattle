@@ -1,12 +1,7 @@
 $(document).ready(function () {
-    hashtagInputs = [];
-
-    bootbox.prompt("Please enter your brand name", function (input) {
-        $("#Brand").html("Welcome to the Hashtag Battle" + (input === null || input.match(/^[\s]*$/) ? "!" : ", " + input +"!"));
-    });
-
-    inputSubmission();
-    startBattle();
+    var hashtagInputs = [];
+    inputSubmission(hashtagInputs);
+    startBattle(hashtagInputs);
     stopBattle();
     enableMetricGraphs();
 });
@@ -47,7 +42,7 @@ function enableMetricGraphs() {
 }
 
 // Validates and stores all the input hashtag inputs
-function inputSubmission() {
+function inputSubmission(hashtagInputs) {
     $('#hashtag').submit( function (event) {
         event.preventDefault();
         var hashtag = $('#hashtag :input')[0].value.toLowerCase();
@@ -71,7 +66,7 @@ function inputSubmission() {
 
 // Updates the hashtag counts for each of the hashtaginputs and displays the bar graph everytime
 var updateHashtagCounts = function (hashtagCount, callback) {
-    data = [];
+    var data = [];
     var leaderCount = 0;
     var leaders = [];
     for (var hashtag in hashtagCount) {    
@@ -97,7 +92,7 @@ var updateHashtagCounts = function (hashtagCount, callback) {
         }
     }
 
-    drawBarChart("count");
+    drawBarChart(data, "count");
     if(callback) {
         callback({"leaderCount" : leaderCount, "leaders": leaders});
     }
@@ -107,12 +102,12 @@ var updateHashtagCounts = function (hashtagCount, callback) {
 // 1. The rate at which the tweets are posted ( 100/ minute is considered good)
 // 2. Percentage of tweets that are actually retweets. A higher number indicates a higher chance of the content going viral
 function calculateViralityFactor(tweetCount, retweetCount) {
-    viralityFactor = 0;
+    var viralityFactor = 0;
     if(tweetCount !=0 ) {
-        battleTime = (endTime - startTime) / (1000 * 60);
-        tweetRate = (tweetCount / battleTime) / 100;
-        viralTimeFactor = (tweetRate > 1 ? 1 : tweetRate);
-        viralityFactor = Math.round((0.25 * (retweetCount / tweetCount) + 0.75 * viralTimeFactor) * 100);
+        var battleTime = (endTime - startTime) / (1000 * 60);
+        var tweetRate = (tweetCount / battleTime) / 100;
+        var viralTimeFactor = (tweetRate > 1 ? 1 : tweetRate);
+        var viralityFactor = Math.round((0.25 * (retweetCount / tweetCount) + 0.75 * viralTimeFactor) * 100);
     }
     return viralityFactor;
 }
@@ -129,7 +124,7 @@ function updateWinner(input) {
 
 // This method draws the hortizontal bar chart using d3.
 // It displays one of the four metric graphs based on the input
-function drawBarChart(dataType){
+function drawBarChart(data, dataType){
     var chart = d3.select(".chart").selectAll("g").remove();
     var chart = d3.select(".chart").selectAll("text").remove();
     //Set up width and height variables for the bar graph display
