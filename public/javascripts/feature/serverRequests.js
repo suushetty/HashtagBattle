@@ -48,8 +48,9 @@ function stopBattle() {
                 } else {
                     // On Success update the hashtag counts and display it on the bar graph
                     endTime = Date.now();
-                    updateHashtagCounts(response.data, function (response) {
-                        updateWinner(response);
+                    updateHashtagCounts(response.data, function (res) {
+                        enableMetricGraphs(res.data);
+                        updateWinner(res);
                     });
                 }
                 $('#loading-indicator').remove();

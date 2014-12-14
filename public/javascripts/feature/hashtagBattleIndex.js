@@ -3,11 +3,10 @@ $(document).ready(function () {
     inputSubmission(hashtagInputs);
     startBattle(hashtagInputs);
     stopBattle();
-    enableMetricGraphs();
 });
 
 // Enables bar graphs for the different metric options in analytics 
-function enableMetricGraphs() {
+function enableMetricGraphs(data) {
     // Highlight the pill that got clicked
     $('.insights li').click(function() {
         $(this).siblings('li').removeClass('active');
@@ -17,27 +16,27 @@ function enableMetricGraphs() {
     $('#hashtagCountMetric').click(function(event) {
         event.preventDefault();
         $('#metricDescription').html("This metric indicates the number of people who tweeted with the input hashtags");
-        drawBarChart("count");
+        drawBarChart(data, "count");
     });
 
     $('#brandReachMetric').click(function(event) {
         event.preventDefault();
         $('#metricDescription').html("This metric measures the impact of the hashtag by estimating how many people it has reached. This does \
             not account for duplicates, i.e some followers might be included multiple times");
-        drawBarChart("reach");
+        drawBarChart(data, "reach");
     });
 
     $('#retweets').click(function(event) {
         event.preventDefault();
         $('#metricDescription').html("This metric indicates the percentage of people who retweeted a tweet that had the input hashtags");
-        drawBarChart("retweet count");
+        drawBarChart(data, "retweet count");
     });
 
     $('#viralityFactor').click(function(event) {
         event.preventDefault();
         $('#metricDescription').html("Virality Factor measures if the hashtag has chances of going viral. It takes the no of retweets \
             and the rate of tweets into account. It varies from a scale of 0 to 100 with 100 indicating that the content is probably viral");
-        drawBarChart("virality factor");
+        drawBarChart(data, "virality factor");
     });
 }
 
@@ -94,7 +93,7 @@ var updateHashtagCounts = function (hashtagCount, callback) {
 
     drawBarChart(data, "count");
     if(callback) {
-        callback({"leaderCount" : leaderCount, "leaders": leaders});
+        callback({"leaderCount" : leaderCount, "leaders": leaders, "data": data});
     }
 }
 

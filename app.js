@@ -10,7 +10,6 @@ var routes = require('./routes/index');
 
 var app = express();
 app.use(session({
-   
     secret: process.env['EXPRESS_SESSION_SECRET'],
     key: 'sid',
     cookie: {secure: false},
